@@ -1,4 +1,4 @@
-all: iso
+all: myos.iso
 
 clean:
 	rm boot.o kernel.o myos.bin isodir/boot/myos.bin
@@ -12,6 +12,6 @@ kernel.o: kernel.c
 myos.bin: boot.o kernel.o
 	i686-elf-gcc boot.o kernel.o -T linker.ld -o myos.bin -ffreestanding -O2 -nostdlib -lgcc
 
-iso: myos.bin isodir/boot/grub/grub.cfg
+myos.iso: myos.bin isodir/boot/grub/grub.cfg
 	cp myos.bin isodir/boot/myos.bin
 	grub-mkrescue -o myos.iso isodir
