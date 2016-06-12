@@ -1,4 +1,5 @@
 /* include type definition for size_t, utint, etc ... */
+#include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
 
@@ -99,7 +100,99 @@ void terminal_writestring(const char* data) {
     terminal_putchar(data[i]);
 }
 
+char kbdus[128] =
+{
+    0,  27, '1', '2', '3', '4', '5', '6', '7', '8',	/* 9 */
+  '9', '0', '-', '=', '\b',	/* Backspace */
+  '\t',			/* Tab */
+  'q', 'w', 'e', 'r',	/* 19 */
+  't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\n',	/* Enter key */
+    0,			/* 29   - Control */
+  'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';',	/* 39 */
+ '\'', '`',   0,		/* Left shift */
+ '\\', 'z', 'x', 'c', 'v', 'b', 'n',			/* 49 */
+  'm', ',', '.', '/',   0,				/* Right shift */
+  '*',
+    0,	/* Alt */
+  ' ',	/* Space bar */
+    0,	/* Caps lock */
+    0,	/* 59 - F1 key ... > */
+    0,   0,   0,   0,   0,   0,   0,   0,
+    0,	/* < ... F10 */
+    0,	/* 69 - Num lock*/
+    0,	/* Scroll Lock */
+    0,	/* Home key */
+    0,	/* Up Arrow */
+    0,	/* Page Up */
+ '-',
+    0,	/* Left Arrow */
+    0,
+    0,	/* Right Arrow */
+  '+',
+    0,	/* 79 - End key*/
+    0,	/* Down Arrow */
+    0,	/* Page Down */
+    0,	/* Insert Key */
+    0,	/* Delete Key */
+    0,   0,   0,
+    0,	/* F11 Key */
+    0,	/* F12 Key */
+    0,	/* All other keys are undefined */
+};
+
+static inline uint8_t inb(uint16_t port) {
+  uint8_t ret;
+  asm volatile ( "inb %1, %0"
+                 : "=a" (ret)
+                 : "Nd" (port) );
+  return ret;
+}
+
+
+char getScancode() {
+  char c = 0;
+  while (true) {
+    if (inb(0x60) != c) {
+      c = inb(0x60);
+      if (c > 0) {
+        return c;
+      }
+    }
+  }
+}
+
+// TODO: understand why below definitions don't work
+
+/* char getScancode() { */
+/*   char c = 0; */
+/*   while (true) { */
+/*     c = inb(0x60); */
+/*     if (c != 0 && c > 0) { */
+/*       return c; */
+/*     } */
+/*   } */
+/* } */
+
+/* uint8_t getScancode() { */
+/*   uint8_t c = 0; */
+/*   while (true) { */
+/*     if (inb(0x60) != c) { */
+/*       c = inb(0x60); */
+/*       if (c > 0) { */
+/*         return c; */
+/*       } */
+/*     } */
+/*   } */
+/* } */
+
+
+char getChar() {
+  return kbdus[getScancode()];
+}
+
 void kernel_main() {
   terminal_initialize();
-  terminal_writestring("Hello, kernel World!\nHello, again!");
+  char str[8] = "input: ";
+  str[7] = getChar();
+  terminal_writestring(str);
 }
