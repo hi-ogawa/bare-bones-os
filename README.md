@@ -17,3 +17,7 @@ $ vagrant ssh
 > exit
 $ qemu-system-i386 -cdrom workdir/myos.iso
 ```
+
+On QEMU, after you choose _myos_ from GRUB loader, this screen will show up:
+
+![](http://wp.hiogawa.net/wp-content/uploads/2016/06/2016-06-12_2013.png)
