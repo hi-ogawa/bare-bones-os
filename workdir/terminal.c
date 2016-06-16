@@ -71,7 +71,7 @@ void terminal_putentryat(char c, uint8_t color, size_t x, size_t y) {
   terminal_buffer[index] = make_vgaentry(c, color);
 }
 
-void terminal_putchar(char c) {
+void putchar(char c) {
   if (c == '\n') {
     terminal_column = 0;
     terminal_row++;
@@ -86,8 +86,8 @@ void terminal_putchar(char c) {
   }
 }
 
-void terminal_writestring(const char* data) {
+void puts(const char* data) {
   size_t datalen = strlen(data);
   for (size_t i = 0; i < datalen; i++)
-    terminal_putchar(data[i]);
+    putchar(data[i]);
 }

@@ -9,7 +9,7 @@ size_t strlen(const char* str);
 
 // terminal.c
 void terminal_initialize();
-void terminal_writestring(const char* data);
-
+void puts(const char* data);
+void putchar(char c);
 
 #endif

@@ -1,6 +1,6 @@
-#include <system.h> // terminal_initialize, terminal_writestring
+#include <system.h> // terminal_initialize, puts
 
 void kernel_main() {
   terminal_initialize();
-  terminal_writestring("Hello, kernel World!\nHello, again!");
+  puts("Hello, kernel World!\nHello, again!");
 }
