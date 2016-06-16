@@ -26,3 +26,29 @@ _start:
 	hlt
 .Lhang:
 	jmp .Lhang
+
+
+# load GDT
+
+.global gdt_flush # gdt_flush will be called from kernel.c
+gdt_flush:
+  # TODO: difference of `gdtp` and `$gdtp`
+	lgdt (gdtp) # gdtp is defined in gdt.c
+	mov $0x10, %eax # TODO: what is "0x10"
+	# commenting-out those lines also works
+	mov %eax, %ss
+	mov %eax, %ds
+	mov %eax, %es
+	mov %eax, %fs
+	mov %eax, %gs
+	# TODO: what is "0x08" ?
+	jmp $0x08, $gdt_flush_ret
+	# jmp gdt_flush_ret
+	# this also works
+	# ljmp $0x08, $gdt_flush_ret
+gdt_flush_ret:
+	ret
+
+# NOTE: far jump
+#  - http://x86.renejeschke.de/html/file_module_x86_id_147.html
+#  - https://en.wikipedia.org/wiki/JMP_(x86_instruction)

@@ -12,4 +12,10 @@ void terminal_initialize();
 void puts(const char* data);
 void putchar(char c);
 
+// gdt.c
+void gdt_install();
+
+// boot.s
+void gdt_flush();
+
 #endif
