@@ -1,6 +1,6 @@
 CFLAGS = -I./include -std=gnu99 -ffreestanding -O2 -Wall -Wextra
 
-CSRCS = string.c kernel.c
+CSRCS = string.c kernel.c terminal.c
 OBJS = $(CSRCS:.c=.o)
 
 .DEFAULT_GOAL = myos.iso
