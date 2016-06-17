@@ -1,4 +1,4 @@
-#include <system.h> // terminal_initialize, puts, gdt_install, idt_install
+#include <system.h> // terminal_initialize, puts, putchar, gdt_install, idt_install
                     // isrs_install
 
 void kernel_main() {
@@ -6,5 +6,9 @@ void kernel_main() {
   idt_install();
   isrs_install();
   terminal_initialize();
-  puts("Hello, kernel World!\nHello, again!");
+  puts("Hello, kernel World!\nHello, again!\n");
+  int x = 5;
+  int y = 0;
+  // trigger "divide by zero" exception
+  putchar(x / y);
 }
