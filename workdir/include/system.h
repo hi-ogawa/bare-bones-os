@@ -15,7 +15,12 @@ void putchar(char c);
 // gdt.c
 void gdt_install();
 
+// idt.c
+void idt_install();
+void idt_set_gate(uint8_t num, uint32_t base, uint16_t selector, uint8_t flags);
+
 // boot.s
 void gdt_flush();
+void idt_load();
 
 #endif

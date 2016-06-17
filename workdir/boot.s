@@ -52,3 +52,11 @@ gdt_flush_ret:
 # NOTE: far jump
 #  - http://x86.renejeschke.de/html/file_module_x86_id_147.html
 #  - https://en.wikipedia.org/wiki/JMP_(x86_instruction)
+
+
+# load IDT
+
+.global idt_load
+idt_load:
+	lidt (idtp) # idtp is defined in idt.c
+	ret
