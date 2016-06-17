@@ -19,8 +19,12 @@ void gdt_install();
 void idt_install();
 void idt_set_gate(uint8_t num, uint32_t base, uint16_t selector, uint8_t flags);
 
+// isrs.c
+void isrs_install();
+
 // boot.s
 void gdt_flush();
 void idt_load();
+void isr0();
 
 #endif

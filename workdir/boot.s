@@ -60,3 +60,23 @@ gdt_flush_ret:
 idt_load:
 	lidt (idtp) # idtp is defined in idt.c
 	ret
+
+
+# interrupt service routines for exception
+
+.global isr0
+isr0:
+	cli
+	push $0x00
+	push $0x00
+	jmp isr_common_stub
+
+# TODO: for now, skip isr1 .. isr31
+
+isr_common_stub:
+	pusha
+	cld
+	call fault_handler
+	popa
+	add $8, %esp
+	iret
