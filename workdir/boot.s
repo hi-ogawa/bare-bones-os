@@ -67,16 +67,19 @@ idt_load:
 .global isr0
 isr0:
 	cli
-	push $0x00
-	push $0x00
+	push $0x00 # err_code
+	push $0x00 # int_no
 	jmp isr_common_stub
 
 # TODO: for now, skip isr1 .. isr31
 
 isr_common_stub:
 	pusha
+	# the 1st argument of `fault_handler` will be a pointer to current stack top
+	push %esp
 	cld
 	call fault_handler
+	add $4, %esp
 	popa
 	add $8, %esp
 	iret

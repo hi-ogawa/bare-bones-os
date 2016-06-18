@@ -4,6 +4,14 @@
 #include <stddef.h> // size_t
 #include <stdint.h> // uint?_t
 
+// type definitions
+
+// stack frame before calling `fault_handler`
+struct regs {
+  uint32_t edi, esi, ebp, esp, ebx, edx, ecx, eax; // pushed registers by `pusha`
+  uint32_t int_no, err_code;
+} __attribute__((packed));
+
 // string.c
 size_t strlen(const char* str);
 
