@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/hi-ogawa/bare-bones-os.svg?branch=master)](https://travis-ci.org/hi-ogawa/bare-bones-os)
+
 Minimal kernel experiment following http://wiki.osdev.org/Bare_Bones.
 
 Notes:
