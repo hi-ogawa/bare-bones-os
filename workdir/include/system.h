@@ -30,6 +30,9 @@ void idt_set_gate(uint8_t num, uint32_t base, uint16_t selector, uint8_t flags);
 // isrs.c
 void isrs_install();
 
+// dump.c
+void hexdump(uint32_t *addr, uint32_t size);
+
 // boot.s
 void gdt_flush();
 void idt_load();
