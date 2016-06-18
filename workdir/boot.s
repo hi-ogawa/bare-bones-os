@@ -75,10 +75,10 @@ isr0:
 
 isr_common_stub:
 	pusha
-	# the 1st argument of `fault_handler` will be a pointer to current stack top
+	# the 1st argument of `isr_main` will be a pointer to current stack top
 	push %esp
 	cld
-	call fault_handler
+	call isr_main
 	add $4, %esp
 	popa
 	add $8, %esp

@@ -9,7 +9,7 @@ char *exception_messages[] = {
   "WTF"
 };
 
-void fault_handler(struct regs *r) {
+void isr_main(struct regs *r) {
   puts("Exception is handled!\n");
   // show as ascii (numbers starts from 0d48)
   puts("r->int_no : "); putchar(r->int_no + 48); putchar('\n');
