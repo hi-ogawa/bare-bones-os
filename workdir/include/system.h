@@ -41,5 +41,7 @@ void hexdump(uint32_t *addr, uint32_t size);
 void gdt_flush();
 void idt_load();
 void isr0();
+void isr32();
+void isr33();
 
 #endif
