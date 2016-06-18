@@ -8,7 +8,7 @@
 .long -(0x1BADB002 + (1<<0 | 1<<1)) # checksum
 
 
-# prepare stack for c program `_kernel_main`
+# prepare stack for c program `kernel_main`
 
 .section .bootstrap_stack, "aw", @nobits
 .skip 16384 # 16 KiB
@@ -21,7 +21,7 @@ stack_top:
 .global _start
 _start:
 	movl $stack_top, %esp
-	call kernel_main
+	call kernel_main # kernel_main is defined in kernel.c
 	cli
 	hlt
 .Lhang:
