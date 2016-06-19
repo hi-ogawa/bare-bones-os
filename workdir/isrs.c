@@ -48,17 +48,10 @@ void isr_main(struct regs *r) {
   handler = interrupt_handlers[r->int_no];
   if (handler) { handler(); }
 
-  if (r->int_no < 32) {
-    // cpu exception handler
-
-  } else {
-    // irq handler: IRQ0 to IRQ 15
-
-    if (40 <= r->int_no && r->int_no < 47) {
-      // IRQ8 to IRQ 15
-      outb(PIC1_COMMAND_PORT, PIC_EOI);
+  if (32 <= r->int_no && r->int_no < 48) {
+    if (40 <= r->int_no && r->int_no < 48) {
+      outb(PIC1_COMMAND_PORT, PIC_EOI); // IRQ8 to IRQ 15
     }
-
-    outb(PIC0_COMMAND_PORT, PIC_EOI);
+    outb(PIC0_COMMAND_PORT, PIC_EOI); // IRQ0 to IRQ 15
   }
 }
