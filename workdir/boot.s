@@ -62,16 +62,35 @@ idt_load:
 	ret
 
 
-# interrupt service routines for exception
+# interrupt service routines for cpu exception
+# TODO: for now, skip isr1 .. isr31
 
+# zero division
 .global isr0
 isr0:
 	cli
-	push $0x00 # err_code
-	push $0x00 # int_no
+	push $0 # err_code
+	push $0 # int_no
 	jmp isr_common_stub
 
-# TODO: for now, skip isr1 .. isr31
+# interrupt service routines for IRQ
+# TODO: for now, skip isr34 ..
+
+# timer interrupt
+.global isr32
+isr32:
+  cli
+	push $0
+	push $32
+	jmp isr_common_stub
+
+# keyboard interrupt
+.global isr33
+isr33:
+  cli
+	push $0
+	push $33
+	jmp isr_common_stub
 
 isr_common_stub:
 	pusha

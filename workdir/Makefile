@@ -1,6 +1,6 @@
 CFLAGS = -I./include -std=gnu99 -ffreestanding -O2 -Wall -Wextra
 
-CSRCS = string.c kernel.c terminal.c gdt.c idt.c isrs.c
+CSRCS = string.c kernel.c terminal.c gdt.c idt.c isrs.c io.c dump.c timer.c
 OBJS = $(CSRCS:.c=.o)
 
 .DEFAULT_GOAL = myos.iso
@@ -19,4 +19,4 @@ myos.iso: myos.bin isodir/boot/grub/grub.cfg
 	grub-mkrescue -o myos.iso isodir
 
 clean:
-	rm -f boot.o $(OBJS) myos.bin isodir/boot/myos.bin
+	rm -f boot.o $(OBJS) myos.bin isodir/boot/myos.bin myos.iso
