@@ -30,6 +30,10 @@ void idt_set_gate(uint8_t num, uint32_t base, uint16_t selector, uint8_t flags);
 // isrs.c
 void isrs_install();
 
+// timer.c
+void init_PIT();
+void timer_handler();
+
 // io.c
 uint8_t inb(uint16_t port);
 void outb(uint16_t port, uint8_t val);
