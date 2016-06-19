@@ -15,7 +15,7 @@ void init_PIT() {
 
 void timer_handler() {
   timer_ticks++;
-  if (timer_ticks % TIMER_HZ == 0) {
-    puts("one second has passed (roughly)\n");
+  if (timer_ticks % (TIMER_HZ * 10) == 0) {
+    puts("10 second has passed (roughly)\n");
   }
 }

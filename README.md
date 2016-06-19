@@ -22,4 +22,4 @@ $ qemu-system-i386 -cdrom workdir/myos.iso
 
 On QEMU, after you choose _myos_ from GRUB loader, this screen will show up:
 
-![](https://cloud.githubusercontent.com/assets/4232207/16174936/6456cd5c-3616-11e6-99c3-d0ca10e9875c.png)
+![](https://cloud.githubusercontent.com/assets/4232207/16175397/a8b55170-3626-11e6-884d-355e6079fa94.png)

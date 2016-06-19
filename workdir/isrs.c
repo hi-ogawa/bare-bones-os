@@ -41,6 +41,7 @@ void isrs_install() {
 
   init_PIT();
   set_interrupt_handler(32, timer_handler);
+  set_interrupt_handler(33, keyboard_handler);
 }
 
 void isr_main(struct regs *r) {
