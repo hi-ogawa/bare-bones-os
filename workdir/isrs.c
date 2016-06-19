@@ -28,8 +28,6 @@ void isrs_install() {
   idt_set_gate(32, (uint32_t)isr32, 0x08, 0x8E);
   idt_set_gate(33, (uint32_t)isr33, 0x08, 0x8E);
 
-  // enable interrupt
-  asm volatile ("sti");
 }
 
 void isr_main(struct regs *r) {
