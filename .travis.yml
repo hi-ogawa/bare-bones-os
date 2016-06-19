@@ -3,3 +3,6 @@ services:
   - docker
 script:
   - ./ci_script.sh
+branches:
+  only:
+    - master
