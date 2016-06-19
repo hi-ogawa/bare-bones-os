@@ -19,4 +19,4 @@ myos.iso: myos.bin isodir/boot/grub/grub.cfg
 	grub-mkrescue -o myos.iso isodir
 
 clean:
-	rm -f boot.o $(OBJS) myos.bin isodir/boot/myos.bin
+	rm -f boot.o $(OBJS) myos.bin isodir/boot/myos.bin myos.iso
