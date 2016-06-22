@@ -1,15 +1,18 @@
 [![Build Status](https://travis-ci.org/hi-ogawa/bare-bones-os.svg?branch=master)](https://travis-ci.org/hi-ogawa/bare-bones-os)
 
-Minimal kernel experiment following http://wiki.osdev.org/Bare_Bones.
+Minimal kernel experiment following two tutorials:
 
-Notes:
+- [OSDev Wiki: Bare Bones](http://wiki.osdev.org/Bare_Bones),
+- [Bran's Kernel Development](http://www.osdever.net/bkerndev/Docs/title.htm).
+
+Details are told in [my blog post](http://wp.hiogawa.net/2016/06/19/os-development-starter/).
+
+Development:
 
 - Use [QEMU](http://wiki.qemu.org/Main_Page) from Mac OS, which is installed by `brew install qemu`
-- Use [my custom vagrant box: hiogawa/os_dev](https://atlas.hashicorp.com/hiogawa/boxes/os_dev/) for
+- Use my custom vagrant box [hiogawa/os_dev](https://atlas.hashicorp.com/hiogawa/boxes/os_dev/) for
   - gcc cross compiler for _i686-elf_ and
   - grub utility `grub-mkrescue`
-
-Commands:
 
 ```
 $ vagrant up
@@ -20,6 +23,6 @@ $ vagrant ssh
 $ qemu-system-i386 -cdrom workdir/myos.iso
 ```
 
-On QEMU, after you choose _myos_ from GRUB loader, this screen will show up:
+On QEMU, after you choose _myos_ from GRUB loader, you can type in on screen:
 
-![](https://cloud.githubusercontent.com/assets/4232207/16175397/a8b55170-3626-11e6-884d-355e6079fa94.png)
+![](http://wp.hiogawa.net/wp-content/uploads/2016/06/os_demo-1.gif)
